@@ -1,0 +1,508 @@
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+--- /dev/null	(date 1666102140765)
++++ b/.gitignore	(date 1666102140765)
+@@ -0,0 +1,38 @@
++target/
++!.mvn/wrapper/maven-wrapper.jar
++!**/src/main/**/target/
++!**/src/test/**/target/
++
++### IntelliJ IDEA ###
++.idea/modules.xml
++.idea/jarRepositories.xml
++.idea/compiler.xml
++.idea/libraries/
++*.iws
++*.iml
++*.ipr
++
++### Eclipse ###
++.apt_generated
++.classpath
++.factorypath
++.project
++.settings
++.springBeans
++.sts4-cache
++
++### NetBeans ###
++/nbproject/private/
++/nbbuild/
++/dist/
++/nbdist/
++/.nb-gradle/
++build/
++!**/src/main/**/build/
++!**/src/test/**/build/
++
++### VS Code ###
++.vscode/
++
++### Mac OS ###
++.DS_Store
+\ No newline at end of file
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pom.xml b/pom.xml
+new file mode 100644
+--- /dev/null	(date 1666113980849)
++++ b/pom.xml	(date 1666113980849)
+@@ -0,0 +1,29 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project xmlns="http://maven.apache.org/POM/4.0.0"
++         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
++    <modelVersion>4.0.0</modelVersion>
++
++    <groupId>org.example</groupId>
++    <artifactId>ebebekProject</artifactId>
++    <version>1.0-SNAPSHOT</version>
++    <build>
++        <plugins>
++            <plugin>
++                <groupId>org.apache.maven.plugins</groupId>
++                <artifactId>maven-compiler-plugin</artifactId>
++                <configuration>
++                    <source>18</source>
++                    <target>18</target>
++                </configuration>
++            </plugin>
++        </plugins>
++    </build>
++
++    <properties>
++        <maven.compiler.source>19</maven.compiler.source>
++        <maven.compiler.target>19</maven.compiler.target>
++        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
++    </properties>
++
++</project>
+\ No newline at end of file
+Index: src/main/java/org/example/Employee.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/Employee.java b/src/main/java/org/example/Employee.java
+new file mode 100644
+--- /dev/null	(date 1666124292558)
++++ b/src/main/java/org/example/Employee.java	(date 1666124292558)
+@@ -0,0 +1,91 @@
++package org.example;
++
++import java.sql.SQLOutput;
++
++public class Employee {
++
++    private String name;
++    private int salary;
++    private int workHours;
++    private int hireYear;
++    public String getName() {
++        return name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++
++    public int getSalary() {
++        return salary;
++    }
++
++    public void setSalary(int salary) {
++        this.salary = salary;
++    }
++
++    public int getWorkHours(int workHours) {
++        return workHours;
++    }
++
++    public void setWorkHours(int workHours) {
++        this.workHours = workHours;
++    }
++
++    public int getHireYear() {
++        return hireYear;
++    }
++
++    public void setHireYear(int hireYear) {
++        this.hireYear = hireYear;
++    }
++
++    public int tax(){
++        if(salary<=1000) {
++            salary = salary;
++            return 0;
++        }
++        else{
++            salary=salary*97/100;
++            return salary*3/100;
++        }
++
++    }
++
++    public int bonus(int workHours){
++        if(workHours>40) {
++            salary += (workHours - 40) * 30;
++            return (workHours - 40) * 30;
++        }
++        return 0;
++    }
++
++    public int raiseSalary(){
++         int thisYear=2021;
++         if(2021-hireYear<10){
++             salary=salary*105/100;
++             return salary; }
++
++         else if(2021-hireYear>9&&2021-hireYear<20){
++             salary= salary*110/100;
++         return  salary;}
++
++         else{
++             salary=salary*115/100;
++         return  salary;}
++    };
++
++
++    public String toString(){
++        System.out.println("Adı:"+name);
++        System.out.println("Maaşı:"+salary);
++        System.out.println("Çalışma Saati"+workHours);
++        System.out.println("Vergi"+tax());
++        System.out.println("Bonus:"+bonus(workHours));
++        System.out.println("Maaş Artışı:");
++        System.out.println("Vergi ve Bonuslarla birlikte maaş:");
++        System.out.println("Toplam Maaş:"+raiseSalary());
++;
++        return null;
++    }
++}
+Index: src/main/java/org/example/mission
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/mission b/src/main/java/org/example/mission
+new file mode 100644
+--- /dev/null	(date 1666117438737)
++++ b/src/main/java/org/example/mission	(date 1666117438737)
+@@ -0,0 +1,24 @@
++
++//    raiseSalary() hesaplarken vergi ve bonusları dikkate almalısınız.
++//    tax() fonksiyonu ile sadece salary’i uygulanan vergi hesaplanacak
++//    Toplam maaş: çalışanın kendi maaşı +artış+ bonus
++//    Vergi ve bonuslarla birlikte maaş için: vergi, bonus ve çalışanın kendi maaşı ile bulunacak.
++
++
++//  Değişkenler:  name :çalışanın adı ve soyadı salary :çalışanın maaşı workHours : Haftalık çalışma saati hireYear : İşe başlangıç yılı
++
++                                   // METHODLAR
++//  tax() : Maaşa uygulanan vergiyi hesaplayacaktır.
++//  Çalışanın maaşı 1000 TL'den az ise vergi uygulanmayacaktır.
++//  Çalışanın maaşı 1000 TL'den fazla ise maaşının %3'ü kadar vergi uygulanacaktır.
++
++
++//bonus() : Eğer çalışan haftada 40 saatten fazla çalışmış ise fazladan çalıştığı her saat başına 30 TL olacak şekilde bonus ücretleri hesaplayacaktır.
++
++
++//raiseSalary() : Çalışanın işe başlangıç yılına göre maaş artışını hesaplayacaktır. Şuan ki yılı 2021 olarak alın.
++//Eğer çalışan 10 yıldan az bir süredir çalışıyorsa maaşına %5 zam yapılacaktır.
++//Eğer çalışan 9 yıldan fazla ve 20 yıldan az çalışıyorsa maaşına %10 zam yapılacaktır
++// Eğer çalışan 19 yıldan fazla çalışıyorsa %15 zam yapılacaktır.
++
++// toString() : Çalışana ait bilgileri ekrana bastıracaktır.
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1666102156963)
++++ b/.idea/misc.xml	(date 1666102156963)
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ExternalStorageConfigurationManager" enabled="true" />
++  <component name="MavenProjectsManager">
++    <option name="originalFiles">
++      <list>
++        <option value="$PROJECT_DIR$/pom.xml" />
++      </list>
++    </option>
++  </component>
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_18" project-jdk-name="19" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+new file mode 100644
+--- /dev/null	(date 1666118516524)
++++ b/.idea/workspace.xml	(date 1666118516524)
+@@ -0,0 +1,98 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="AutoImportSettings">
++    <option name="autoReloadType" value="SELECTIVE" />
++  </component>
++  <component name="ChangeListManager">
++    <list default="true" id="39ba4645-1057-4a21-b5ef-0994be6202fc" name="Changes" comment="{{">
++      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Employee.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/ebebekInterfaces.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/mission" afterDir="false" />
++    </list>
++    <option name="SHOW_DIALOG" value="false" />
++    <option name="HIGHLIGHT_CONFLICTS" value="true" />
++    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
++    <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="Class" />
++      </list>
++    </option>
++  </component>
++  <component name="Git.Settings">
++    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++  </component>
++  <component name="MarkdownSettingsMigration">
++    <option name="stateVersion" value="1" />
++  </component>
++  <component name="ProjectId" id="2GJMGwv4vYd03TzVVf4oPV5Sw1d" />
++  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
++  <component name="ProjectViewState">
++    <option name="hideEmptyMiddlePackages" value="true" />
++    <option name="showLibraryContents" value="true" />
++  </component>
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "RunOnceActivity.OpenProjectViewOnStart": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
++    "run.code.analysis.last.selected.profile": "pProject Default"
++  }
++}]]></component>
++  <component name="RecentsManager">
++    <key name="CreateClassDialog.RecentsKey">
++      <recent name="org.example" />
++    </key>
++  </component>
++  <component name="RunManager">
++    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="org.example.Main" />
++      <module name="ebebekProject" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="org.example.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <recent_temporary>
++      <list>
++        <item itemvalue="Application.Main" />
++      </list>
++    </recent_temporary>
++  </component>
++  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
++  <component name="TaskManager">
++    <task active="true" id="Default" summary="Default task">
++      <changelist id="39ba4645-1057-4a21-b5ef-0994be6202fc" name="Changes" comment="" />
++      <created>1666102142867</created>
++      <option name="number" value="Default" />
++      <option name="presentableId" value="Default" />
++      <updated>1666102142867</updated>
++    </task>
++    <servers />
++  </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: src/main/java/org/example/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/Main.java b/src/main/java/org/example/Main.java
+new file mode 100644
+--- /dev/null	(date 1666124402940)
++++ b/src/main/java/org/example/Main.java	(date 1666124402940)
+@@ -0,0 +1,87 @@
++package org.example;
++
++
++import javax.swing.*;
++import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
++
++public class Main {
++    private static JLabel jLabel1;
++    private static JLabel jLabel2;
++    private static JLabel jLabel3;
++    private static JLabel jLabel4;
++    public static void main(String[] args) {
++
++        Employee employee = new Employee();
++        JFrame jFrame= new JFrame("Employee status");
++        JButton jButton =new JButton();
++        jButton.setText("Save");
++        jButton.setBounds(130,250,100,20);
++
++        jLabel1 = new javax.swing.JLabel();
++        jLabel1.setBounds(44, 49, 53, 18);
++        jLabel1.setText("Adınız:");
++        JTextField name = new JTextField();
++        name.setBounds(96, 49, 160, 18);
++
++        jLabel2 = new javax.swing.JLabel();
++        jLabel2.setBounds(44, 70, 53, 18);
++        jLabel2.setText("Maaşı:");
++        JTextField salary = new JTextField();
++        salary.setBounds(96, 70, 160, 18);
++
++        jLabel3 = new javax.swing.JLabel();
++        jLabel3.setBounds(44, 91, 53, 18);
++        jLabel3.setText("Çalışma saati:");
++        JTextField workHours = new JTextField();
++        workHours.setBounds(96, 91, 160, 18);
++
++        jLabel4 = new javax.swing.JLabel();
++        jLabel4.setBounds(44, 112, 53, 18);
++        jLabel4.setText("Başlanıç Yılı:");
++        JTextField hireYears = new JTextField();
++        hireYears.setBounds(96, 112, 160, 18);
++
++
++
++        jFrame.add(jButton);
++        jFrame.add(name);
++        jFrame.add(jLabel1);
++        jFrame.add(jLabel2);
++        jFrame.add(jLabel3);
++        jFrame.add(jLabel4);
++        jFrame.add(salary);
++        jFrame.add(workHours);
++        jFrame.add(hireYears);
++        jFrame.setSize(500,400);
++        jFrame.setLayout(null);
++        jFrame.setVisible(true);
++
++
++        jButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                employee.setName(name.getText());
++
++                String temp1 = salary.getText();
++                int Salary=Integer.parseInt(temp1);
++                employee.setSalary(Salary);
++
++                String temp2 =workHours.getText();
++                int workHours=Integer.parseInt(temp2);
++                employee.setWorkHours(workHours);
++
++                String temp3= hireYears.getText();
++                int hireYears=Integer.parseInt(temp3);
++                employee.setHireYear(hireYears);
++                employee.tax();
++                employee.bonus(workHours);
++                employee.raiseSalary();
++                employee.toString();
++
++
++            }
++        });
++
++    }
++}
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1666102143408)
++++ b/.idea/vcs.xml	(date 1666102143408)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/encodings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/encodings.xml b/.idea/encodings.xml
+new file mode 100644
+--- /dev/null	(date 1666102157003)
++++ b/.idea/encodings.xml	(date 1666102157003)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Encoding">
++    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
++    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
++  </component>
++</project>
+\ No newline at end of file
+Index: src/main/java/org/example/ebebekInterfaces.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/ebebekInterfaces.java b/src/main/java/org/example/ebebekInterfaces.java
+new file mode 100644
+--- /dev/null	(date 1666103124145)
++++ b/src/main/java/org/example/ebebekInterfaces.java	(date 1666103124145)
+@@ -0,0 +1,6 @@
++package org.example;
++
++public class ebebekInterfaces {
++
++
++}
