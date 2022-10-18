@@ -46,8 +46,9 @@ public class Employee {
             return 0;
         }
         else{
-            salary=salary*97/100;
-            return salary*3/100;
+            int tax=salary*3/100;
+            salary-=tax;
+            return tax;
         }
 
     }
@@ -63,15 +64,18 @@ public class Employee {
     public int raiseSalary(){
          int thisYear=2021;
          if(2021-hireYear<10){
-             salary=salary*105/100;
+             int bonus=salary*5/100;
+             salary=salary+bonus;
              return salary; }
 
          else if(2021-hireYear>9&&2021-hireYear<20){
-             salary= salary*110/100;
+             int bonus=salary*10/100;
+             salary=salary+bonus;
          return  salary;}
 
          else{
-             salary=salary*115/100;
+             int bonus=salary*15/100;
+             salary=salary+bonus;
          return  salary;}
     };
 
@@ -80,9 +84,9 @@ public class Employee {
         System.out.println("Adı:"+name);
         System.out.println("Maaşı:"+salary);
         System.out.println("Çalışma Saati"+workHours);
-        System.out.println("Vergi"+tax());
-        System.out.println("Bonus:"+bonus(workHours));
-        System.out.println("Maaş Artışı:");
+        System.out.println("Vergi "+tax());
+        System.out.println("Bonus: "+bonus(workHours));
+        System.out.println("Maaş Artışı: "+bonus( workHours));
         System.out.println("Vergi ve Bonuslarla birlikte maaş:");
         System.out.println("Toplam Maaş:"+raiseSalary());
 ;
